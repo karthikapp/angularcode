@@ -1,4 +1,5 @@
-<input [(ngModel)]="seatchtext">
+<input [(ngModel)]="searchtext">
+{{searchtext}}
  <table>
    <tbody>
     <tr *ngFor="let item of data | searchnamepipe: searchtext">

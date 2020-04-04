@@ -5,18 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchnamepipePipe implements PipeTransform {
 
-  transform(items[]: any, searchtext: any ): any {
-    console.log("called", searchtext)
-    if(!items) return []
-    if(!searchtext) return items
-    searchtext = searchtext.toLoweCase()
-    return items.filter((item) => {
-      item.toLoweCase().incluses(searchtext)
-    })
-
-    // return items.fiter(item = > {
-    //   return item
-    // })
-  }
-
+  transform(items: any[], searchtext: string): any[] {
+    if(!items) return [];
+    if(!searchtext) return items;
+searchtext = searchtext.toLowerCase();
+return items.filter( it => {
+      return it.name.toLowerCase().includes(searchtext);
+    });
+   }
 }
