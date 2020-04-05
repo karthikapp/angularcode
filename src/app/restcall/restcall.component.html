@@ -1,10 +1,59 @@
-<input [(ngModel)]="searchtext">
-{{searchtext}}
- <table>
-   <tbody>
-    <tr *ngFor="let item of data | searchnamepipe: searchtext">
-      {{item.name}}
-    </tr>
-   </tbody>
- </table>
+<div style="padding: 40px;">
 
+<div class="mainContainer">
+  <div class="content">
+      <div class="row margin25">
+          <div class="col-md-4">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text upload" id="btnUpload"  (click)="upload()">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                      <form action="/api/upload" method="post" enctype="multipart/form-data">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="fileChange($event)" >
+                      </form>
+                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="uk-margin">
+  <div class="uk-inline" style="width: 50%;">
+      <span class="uk-form-icon" uk-icon="icon: search"></span>
+<input [(ngModel)]="searchtext" class="uk-input uk-width-2-2" type="text" placeholder="Type the name you want to search" style="width: 80%;">
+</div>
+
+<div class="uk-inline" style="width: 50%;">
+  <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+<input [(ngModel)]="daysfilter" class="uk-input uk-width-2-2" type="text" placeholder="Type the days you want the filter" style="width: 100%;">
+</div>
+</div>
+
+ <table class="uk-table" style="background-color:ivory; padding: 10px;">
+  <caption></caption>
+  <thead style="font-style: italic;font-weight: 600;color: midnightblue;">
+      <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Traffic</th>
+          <th>Trend</th>
+      </tr>
+
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of data | searchnamepipe: searchtext | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{item.name}}</td>
+          <td>{{item.date}}</td>
+          <td>{{item.traffic}}</td>
+          <td>{{item.trend}}</td>
+      </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event" style="color: ivory;"></pagination-controls>
+</table>
+
+
+</div>

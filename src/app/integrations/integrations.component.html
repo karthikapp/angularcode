@@ -1,0 +1,30 @@
+<div style="padding: 40px;">
+  <form>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: list"></span>
+            <input class="uk-input" type="text" placeholder="Type API Name Here " name="apiname" [(ngModel)]="apiname">
+        </div>
+        &nbsp; 
+        <button  class="uk-button uk-button-primary" (click)="onsubmit(apiname)">
+          Add Api
+        </button>
+    </div>
+
+</form>
+  <div class="uk-child-width-2-2@s uk-grid-match" uk-grid>
+
+    <div *ngFor="let api of apilists">
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">{{api.apiname}}</h3>
+            <p> Created at : {{api.date}}</p>
+            <div class="uk-card-footer" style="padding: 10px;color: rebeccapurple; !important">
+              <a  class="uk-button uk-button-text" (click)="onclickapicall(api.apiname)"> Click to Call API</a>
+          </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

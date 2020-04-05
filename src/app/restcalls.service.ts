@@ -18,7 +18,12 @@ export class restcall {
 
   getalldata()
   {
-   return this.httpClient.get("http://localhost:3000/data.csv")
+   return this.httpClient.get("http://localhost:3000/apicall/data.csv")
+  }
+  getapicall(apiname)
+  {
+    var apicallurl =  "http://localhost:3000/newline/" + apiname
+   return this.httpClient.get(apicallurl)
   }
   
 }
